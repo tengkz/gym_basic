@@ -66,9 +66,10 @@ for episode in range(EPISODE):
         N[state,action] += 1
         Q[state,action] += 1.0/N[state,action]*(G-Q[state,action])
         G = G*GAMMA+r
+    precision = 1.0*sum(queue.queue)/QUEUE_SIZE)
     if episode%1000 == 0:
-        print 'episode=%d, epsilon=%f' % (episode,epsilon)
-    result.append(1.0*sum(queue.queue)/QUEUE_SIZE)
+        print 'episode=%d, epsilon=%f, precision=%f' % (episode,epsilon,precision)
+    result.append(precision)
 
 plt.plot(result)
 plt.show()
